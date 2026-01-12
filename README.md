@@ -127,10 +127,50 @@ Files are NDJSON with Cloudflare's workers_trace_events schema.
 
 ## Deployment to FastMCP Cloud
 
-1. Push this repo to GitHub
-2. Connect at [fastmcp.cloud](https://fastmcp.cloud)
-3. Set environment variables in the dashboard
-4. Deploy
+### Step 1: Sign up at FastMCP Cloud
+1. Go to [fastmcp.cloud](https://fastmcp.cloud)
+2. Sign in with your GitHub account
+
+### Step 2: Create a new project
+1. Click "Create Project"
+2. Select this repository (`logpush-mcp`)
+3. FastMCP will auto-detect the `pyproject.toml` entry point
+
+### Step 3: Configure environment variables
+In the FastMCP Cloud dashboard, add these environment variables:
+
+| Variable | Description |
+|----------|-------------|
+| `R2_ACCOUNT_ID` | Your Cloudflare account ID |
+| `R2_ACCESS_KEY_ID` | R2 API token access key ID |
+| `R2_SECRET_ACCESS_KEY` | R2 API token secret access key |
+| `R2_BUCKET_NAME` | Name of your logpush R2 bucket |
+
+### Step 4: Deploy
+Click "Deploy" - FastMCP handles the rest automatically.
+
+### Step 5: Connect to your MCP client
+FastMCP Cloud provides a URL like `https://your-project.fastmcp.cloud/mcp`
+
+For Claude Desktop, add to your config:
+```json
+{
+  "mcpServers": {
+    "logpush": {
+      "command": "npx",
+      "args": ["mcp-remote", "https://your-project.fastmcp.cloud/mcp"]
+    }
+  }
+}
+```
+
+### Getting R2 API Credentials
+
+1. Go to Cloudflare Dashboard → R2 → Manage R2 API Tokens
+2. Create a new API token with:
+   - **Permissions**: Object Read & Write
+   - **Scope**: Specific bucket (your logpush bucket)
+3. Copy the Access Key ID and Secret Access Key
 
 ## License
 
