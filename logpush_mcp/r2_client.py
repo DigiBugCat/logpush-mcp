@@ -6,7 +6,7 @@ from typing import Optional
 import boto3
 from botocore.config import Config
 
-from .types import DateFolder, LogFile
+from logpush_mcp.types import DateFolder, LogFile
 
 
 class R2Client:

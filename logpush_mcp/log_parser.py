@@ -4,7 +4,7 @@ import json
 from collections import Counter
 from typing import Optional
 
-from .types import LogEntry
+from logpush_mcp.types import LogEntry
 
 
 def parse_ndjson(content: str) -> list[LogEntry]:

@@ -4,14 +4,14 @@ from typing import Optional
 
 from fastmcp import FastMCP
 
-from .log_parser import (
+from logpush_mcp.log_parser import (
     compute_stats,
     filter_entries,
     format_entry_detail,
     format_entry_summary,
     parse_ndjson,
 )
-from .r2_client import get_client
+from logpush_mcp.r2_client import get_client
 
 mcp = FastMCP("Logpush")
 
